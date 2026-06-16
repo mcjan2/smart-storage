@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      ports:
+        - "3306:3306"
+      volumes:
+        - db_data:/var/lib/mysql
+  admin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRAY=1
+    ports:
+        - "8080:80"
+    volumes:
+      db-data:
+      
